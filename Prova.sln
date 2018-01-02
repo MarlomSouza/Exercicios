@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26730.16
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exercicio_1", "Exercicio_1", "{8A9348BB-BAC3-4A7A-ADFF-9AAC5D5DA038}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Exercicio", "Linq\Exercicio.csproj", "{C3851DE8-22EC-44F3-929F-65FC9145EC88}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aplicacao", "Aplicacao", "{FF7B0168-F0FD-4576-8B09-486AE88787EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{00207F78-F1EF-475B-8219-9A6211450A4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExercicioTest", "ExercicioTest\ExercicioTest.csproj", "{BE49322F-AA02-4ED2-9CE7-809659EA9C3A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C3851DE8-22EC-44F3-929F-65FC9145EC88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3851DE8-22EC-44F3-929F-65FC9145EC88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3851DE8-22EC-44F3-929F-65FC9145EC88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3851DE8-22EC-44F3-929F-65FC9145EC88}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE49322F-AA02-4ED2-9CE7-809659EA9C3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE49322F-AA02-4ED2-9CE7-809659EA9C3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE49322F-AA02-4ED2-9CE7-809659EA9C3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE49322F-AA02-4ED2-9CE7-809659EA9C3A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C3851DE8-22EC-44F3-929F-65FC9145EC88} = {FF7B0168-F0FD-4576-8B09-486AE88787EC}
+		{FF7B0168-F0FD-4576-8B09-486AE88787EC} = {8A9348BB-BAC3-4A7A-ADFF-9AAC5D5DA038}
+		{00207F78-F1EF-475B-8219-9A6211450A4A} = {8A9348BB-BAC3-4A7A-ADFF-9AAC5D5DA038}
+		{BE49322F-AA02-4ED2-9CE7-809659EA9C3A} = {00207F78-F1EF-475B-8219-9A6211450A4A}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {94606028-4C4D-48B9-B437-F33417714535}
+	EndGlobalSection
+EndGlobal
