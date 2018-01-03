@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Exercicio;
+using System;
 
 namespace Linq
 {
@@ -6,8 +7,7 @@ namespace Linq
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Console.ReadLine();
+            Console.WriteLine("Hello word");
         }
     }
 }
