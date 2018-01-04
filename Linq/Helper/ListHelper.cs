@@ -10,18 +10,25 @@ namespace Exercicio
     {
         public static bool ContainsOnlyOddNumbers(this IEnumerable<int> lista)
         {
-            return lista.Any(item => item.IsOdd());
+            return lista.Where(item => item.IsOdd()).Count() == lista.Count();
         }
 
         public static bool ContainsOnlyOddNumbers(this IEnumerable<long> lista)
         {
-            return lista.Any(item => item.IsOdd());
+            return lista.Where(item => item.IsOdd()).Count() == lista.Count();
         }
 
         public static bool ContainsOnlyOddNumbers(this IEnumerable<Decimal> lista)
         {
-            return lista.Any(item => item.IsOdd());
+            return lista.Where(item => item.IsOdd()).Count() == lista.Count();
         }
+
+
+        public static IList<T> NotIn<T>(this IEnumerable<T> lista_A, IEnumerable<T> lista_B)
+        {
+            return lista_A.Where(item => lista_B.Contains(item) == false).ToList();
+        }
+
 
 
     }

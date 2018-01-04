@@ -32,7 +32,7 @@ namespace ExercicioTest
         [Theory]
         [InlineData(10, 9, 20)]
         [InlineData(20, 18, 21)]
-        [InlineData(1000000, 837799, 525)]
+        //[InlineData(1000000, 837799, 525)]
         public void Maior_Numero_Sequencial_collatz(long collatzNumeber, long maiorNumero, long maiorSequencia)
         {
             var _maiorSequencia = collatz.MaiorSequenciaCollatz(collatzNumeber);
@@ -55,45 +55,6 @@ namespace ExercicioTest
             for (int i = 0; i < listaEsperada.Count; i++)
                 Assert.Equal(listaEsperada[i], collatz.CollatzNumbers[i]);
         }
-
-        [Fact]
-        public void Lista_possui_apenas_numeros_pares() {
-            IList<int> listaEsperada = new List<int>() { 2,4,6,8,10 };
-
-            Assert.False(listaEsperada.ContainsOnlyOddNumbers());
-        }
-
-        [Fact]
-        public void Lista_possui_apenas_numeros_impares()
-        {
-            IList<long> listaEsperada = new List<long>() { 1,3,5,7,9 };
-
-            Assert.True(listaEsperada.ContainsOnlyOddNumbers());
-        }
-
-        [Fact]
-        public void Lista_possui_numeros_impares_e_pares()
-        {
-            IList<decimal> listaEsperada = new List<decimal>() { 1,2,3,4,5,6 };
-
-            Assert.False(listaEsperada.ContainsOnlyOddNumbers());
-        }
-
-        [Fact]
-        public void numero_par()
-        {
-            Assert.Equal(false, 2.IsOdd());
-        }
-
-        [Fact]
-        public void numero_impar()
-        {
-            Assert.Equal(true, 3.IsOdd());
-        }
-
-
-
-
     }
 }
 

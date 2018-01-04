@@ -20,14 +20,5 @@ namespace Exercicio.Helper
         {
             return number % 2 != 0;
         }
-
-
-        public static bool IsPrime(this Int32 number)
-        {
-            var query = Enumerable.Range(2, number).Where(value => value);
-
-            return false;
-
-        }
     }
 }
