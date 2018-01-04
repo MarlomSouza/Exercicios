@@ -30,7 +30,7 @@ namespace ExercicioTest
         [Fact]
         public void Lista_possui_numeros_impares_e_pares()
         {
-            IList<long> listaEsperada = new List<long>() { 1, 2, 3, 4, 5, 6 };
+            IList<decimal> listaEsperada = new List<decimal>() { 1, 2, 3, 4, 5, 6 };
 
             Assert.False(listaEsperada.ContainsOnlyOddNumbers());
         }
@@ -48,19 +48,27 @@ namespace ExercicioTest
         }
 
         [Fact]
-
         public void item_nao_contem_na_outra_lista()
         {
             IEnumerable<int> lista_A = new List<int>() { 1, 3, 7, 29, 42, 98, 234, 93 };
             IEnumerable<int> lista_B = new List<int>() { 4, 6, 93, 7, 55, 32, 3 };
+            IEnumerable<int> lista_C = new List<int>() { 1, 29, 42, 98, 234 };
 
-            var lista_C = lista_A.NotIn(lista_B);
+            var lista_Resultado = lista_A.NotIn(lista_B);
 
-            var lista_Resultado = new List<int>() { 1, 29, 42, 98, 234 };
+            Assert.True(lista_C.SequenceEqual(lista_Resultado));
+        }
 
-            for (int i = 0; i < lista_Resultado.Count; i++)
-                Assert.Equal(lista_Resultado[i], lista_C[i]);
+        [Fact]
+        public void item_contem_na_outra_lista()
+        {
+            IEnumerable<int> lista_A = new List<int>() { 1, 3, 7, 29, 42, 98, 234, 93 };
+            IEnumerable<int> lista_B = new List<int>() { 4, 6, 93, 7, 55, 32, 3 };
+            IEnumerable<int> lista_C = new List<int>() { 3, 7, 93 };
 
+            var lista_Resultado = lista_A.In(lista_B);
+
+            Assert.True(lista_C.SequenceEqual(lista_Resultado));
         }
     }
 }

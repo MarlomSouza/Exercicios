@@ -2,6 +2,7 @@
 using Exercicio.Helper;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using Xunit;
 
@@ -32,7 +33,7 @@ namespace ExercicioTest
         [Theory]
         [InlineData(10, 9, 20)]
         [InlineData(20, 18, 21)]
-        //[InlineData(1000000, 837799, 525)]
+        [InlineData(1000000, 837799, 525)]
         public void Maior_Numero_Sequencial_collatz(long collatzNumeber, long maiorNumero, long maiorSequencia)
         {
             var _maiorSequencia = collatz.MaiorSequenciaCollatz(collatzNumeber);
@@ -46,14 +47,12 @@ namespace ExercicioTest
             collatz.CalcularCollatz(6);
             IList<long> listaEsperada = new List<long>() { 6, 3, 10, 5, 16, 8, 4, 2, 1 };
 
-            for (int i = 0; i < listaEsperada.Count; i++)
-                Assert.Equal(listaEsperada[i], collatz.CollatzNumbers[i]);
+            Assert.True(listaEsperada.SequenceEqual(collatz.CollatzNumbers));
 
             collatz.CalcularCollatz(13);
             listaEsperada = new List<long>() { 13, 40, 20, 10, 5, 16, 8, 4, 2, 1 };
 
-            for (int i = 0; i < listaEsperada.Count; i++)
-                Assert.Equal(listaEsperada[i], collatz.CollatzNumbers[i]);
+            Assert.True(listaEsperada.SequenceEqual(collatz.CollatzNumbers));
         }
     }
 }
