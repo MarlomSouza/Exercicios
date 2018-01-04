@@ -8,9 +8,10 @@ import { UsuarioComponent } from './usuario/usuario.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { HttpModule } from '@angular/http';
 import { RepositoriosComponent } from './repositorios/repositorios.component';
+import { FormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [BrowserModule, HttpModule],
+  imports: [BrowserModule, HttpModule, FormsModule],
   declarations: [AppComponent, LoginComponent, UsuarioComponent, ListagemComponent, RepositoriosComponent],
   providers: [],
   bootstrap: [AppComponent]

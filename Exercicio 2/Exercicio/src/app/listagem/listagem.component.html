@@ -6,20 +6,19 @@
     <div class="row">
         <div class="col-sm-12">
             <form>
-
-                <input #textoFiltro (keyup)="0" class="form-control" placeholder="Pesquisar Usuario">
+                <input (keyup)="searchUser()" name="search" [(ngModel)]="search" class="form-control" placeholder="Pesquisar Usuario">
             </form>
         </div>
     </div>
+    <div class="container marketing">
+        <div class="row">
 
-    <div class="row">
+            <div class="col-sm-3" *ngFor="let usuario of usuarios">
+                <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.url}}" login="{{usuario.login | uppercase}}">
+                </usuario>
 
-        <div class="col-sm-3" *ngFor="let usuario of usuarios">
-
-            <h3 class="text-center">{{usuario.login| uppercase}}</h3>
-            <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" repositorio="{{usuario.repos_url}}">
-            </usuario>
-
+            </div>
         </div>
+
     </div>
 </div>
