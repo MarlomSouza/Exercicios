@@ -1,17 +1,24 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-12">
-            <form>
-                <input (keyup)="searchUser()" name="search" [(ngModel)]="search" class="form-control" placeholder="Pesquisar Usuario">
-                <br>
-            </form>
-        </div>
+<div class="row">
+    <div class="col-sm-12">
+        <form>
+            <input (keyup)="searchUser()" name="search" [(ngModel)]="search" class="form-control" placeholder="Pesquisar Usuario">
+            <br>
+        </form>
+    </div>
+</div>
+<br>
+<div *ngIf="usuarios.length > 0" class="row">
+    <div class="col-sm-4" *ngFor="let usuario of usuarios">
+        <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" login="{{usuario.login | uppercase}}">
+        </usuario>
     </div>
 
-    <div class="row">
-        <div class="col-sm-3" *ngFor="let usuario of usuarios">
-            <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" login="{{usuario.login | uppercase}}">
-            </usuario>
-        </div>
+    <div class="col-sm-12">
+        <button (click)="obterMaisUsuarios()" type="button" class="btn btn-primary btn-lg btn-block">+ 10 Usuarios</button>
     </div>
+</div>
+
+
+<div *ngIf="usuarios.length == 0" class="alert alert-danger" role="alert">
+    <strong>Poxa vida!</strong> Nenhum usuario encontrado.
 </div>
