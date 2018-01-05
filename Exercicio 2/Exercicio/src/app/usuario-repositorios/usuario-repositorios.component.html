@@ -1,13 +1,14 @@
 <div class="row">
     <div class="col-md-10">
         <h1 class="text-capitalize">{{usuario.name}}</h1>
+        <h6 class="text-capitalize font-weight-light">{{usuario.login}}</h6>
     </div>
 
     <div class="col-md-2">
         <a class="btn btn-danger" [routerLink]="['/']" role="button"> Voltar </a>
     </div>
 </div>
-<h6 class="text-capitalize font-weight-light">{{usuario.login}}</h6>
+
 <hr>
 <div class="row">
     <div class="col-md-3">
@@ -21,13 +22,13 @@
                 <button type="button" class="btn btn-success">
             Repositorios <span class="badge badge-light">{{usuario.public_repos}}</span>
         </button>
-                <button type="button" class="btn btn-dark">
+                <button type="button" class="btn btn-danger">
             Gits <span class="badge badge-light">{{usuario.public_gists}}</span>
         </button>
-                <button type="button" class="btn btn-danger">
+                <button type="button" class="btn btn-info">
             Seguidores <span class="badge badge-light">{{usuario.followers}}</span>
         </button>
-                <button type="button" class="btn btn-info">
+                <button type="button" class="btn btn-secondary">
             Seguindo <span class="badge badge-light">{{usuario.following}}</span>
         </button>
             </div>

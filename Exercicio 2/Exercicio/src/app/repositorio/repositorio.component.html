@@ -7,12 +7,12 @@
         <p class="card-text text-justify">
             {{descricao.length > 0 ? descricao: 'Sem descrição'}}
         </p>
-        <span class="badge badge-info">Criado em: {{data_criacao | date: 'dd/MM/yyyy'}}</span>
-        <span class="badge badge-danger">Forks: {{forks}}</span>
-        <span class="badge badge-success">Watchers:  {{watchers}}</span>
-        <span class="badge badge-warning">Stars: {{stars}}</span>
+        <span class="badge badge-info">  <span class="fa fa-birthday-cake" aria-hidden="true"></span> Criado em: {{data_criacao | date: 'dd/MM/yyyy'}}</span>
+        <span class="badge badge-danger"> <span class="fa fa-code-fork" aria-hidden="true"></span> Forks: {{forks}}</span>
+        <span class="badge badge-success"> <span class="fa fa-eye" aria-hidden="true"></span> Watchers: {{watchers}} </span>
+        <span class="badge badge-warning"> <span class="fa fa-star" aria-hidden="true"></span> Stars: {{stars}}</span>
     </div>
-    <div class="card-footer ">
+    <div class="card-footer">
         <a href="{{url}}" target="_blank" class="btn btn-primary float-lg-right"><span class="fa fa-github" aria-hidden="true"></span> Pagina repositorio</a>
     </div>
-</div>x
+</div>
