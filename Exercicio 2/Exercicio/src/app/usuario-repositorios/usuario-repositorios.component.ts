@@ -25,19 +25,22 @@ export class UsuarioRepositoriosComponent implements OnInit {
     this.route.params.subscribe(params =>{
       let login:string = params['login'];
       this.obterRepositorio(login);
+      this.obterUsuario(login);
     });
   }
 
   obterRepositorio(login:string){
     this.http
-    .get('https://api.github.com/users/'+login+'/repos')
-    .map(result => result.json())
-    .subscribe(repositorios => { this.repositorios = repositorios; this.obterUsuario(); }), error => console.log("ERRO ====>>> ", error);
+      .get('https://api.github.com/users/'+login+'/repos')
+      .map(result => result.json())
+      .subscribe(repositorios => { this.repositorios = repositorios; }), error => console.log("ERRO ====>>> ", error);
   };
 
-  obterUsuario(){
-    this.usuario = this.repositorios[0]["owner"];
-    console.log(this.usuario);
+  obterUsuario(login:string){
+    this.http
+    .get('https://api.github.com/users/'+login)
+      .map(result => result.json())
+      .subscribe(usuario => { this.usuario = usuario; console.log(usuario)}), error => console.log("ERRO ====>>> ", error);
   };
 
 

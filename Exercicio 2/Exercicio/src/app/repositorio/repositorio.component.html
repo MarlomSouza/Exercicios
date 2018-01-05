@@ -4,16 +4,15 @@
 
         <h6 class="card-subtitle mb-1 text-muted">Id: {{id}}</h6>
 
-        <p class="card-text">
+        <p class="card-text text-justify">
             {{descricao.length > 0 ? descricao: 'Sem descrição'}}
         </p>
-        <span class="badge badge-success">Criado em: {{data_criacao | date: 'dd/MM/yyyy'}}</span>
-        <span class="badge badge-info">Forks: {{forks}}</span>
-        <span class="badge badge-warning">Watchers:  {{watchers}}</span>
-        <span class="badge badge-danger">Stars: {{stars}}</span>
+        <span class="badge badge-info">Criado em: {{data_criacao | date: 'dd/MM/yyyy'}}</span>
+        <span class="badge badge-danger">Forks: {{forks}}</span>
+        <span class="badge badge-success">Watchers:  {{watchers}}</span>
+        <span class="badge badge-warning">Stars: {{stars}}</span>
     </div>
     <div class="card-footer ">
-
         <a href="{{url}}" target="_blank" class="btn btn-primary float-lg-right"><span class="fa fa-github" aria-hidden="true"></span> Pagina repositorio</a>
     </div>
-</div>
+</div>x

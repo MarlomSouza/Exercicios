@@ -9,11 +9,6 @@ import { Component, Input } from '@angular/core';
 })
 export class RepositorioComponent {
 
-  // @Input() avatar_url : string;
-  
-  // @Input() login: string;
-  // @Input() url: string;
-
   @Input() id: number;
   @Input() nome: string;
   @Input() descricao: string;

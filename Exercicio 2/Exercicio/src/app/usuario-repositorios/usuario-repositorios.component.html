@@ -1,6 +1,60 @@
-<usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.url}}" login="{{usuario.login | uppercase}}">
-</usuario>
+<div class="row">
+    <div class="col-md-10">
+        <h1 class="text-capitalize">{{usuario.name}}</h1>
+    </div>
 
+    <div class="col-md-2">
+        <a class="btn btn-danger" [routerLink]="['/']" role="button"> Voltar </a>
+    </div>
+</div>
+<h6 class="text-capitalize font-weight-light">{{usuario.login}}</h6>
+<hr>
+<div class="row">
+    <div class="col-md-3">
+        <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.html_url}}">
+        </usuario>
+    </div>
+    <br>
+    <div class="col-md-7">
+        <div class="row">
+            <div class="col-md-12">
+                <button type="button" class="btn btn-success">
+            Repositorios <span class="badge badge-light">{{usuario.public_repos}}</span>
+        </button>
+                <button type="button" class="btn btn-dark">
+            Gits <span class="badge badge-light">{{usuario.public_gists}}</span>
+        </button>
+                <button type="button" class="btn btn-danger">
+            Seguidores <span class="badge badge-light">{{usuario.followers}}</span>
+        </button>
+                <button type="button" class="btn btn-info">
+            Seguindo <span class="badge badge-light">{{usuario.following}}</span>
+        </button>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        Detalhes
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Localização: {{usuario.location ? usuario.location: ' - '}}</li>
+                        <li class="list-group-item">Email:
+                            <a href="mailto: {{usuario.email? usuario.email : ''}}" target="_blanck">{{usuario.email ? usuario.email : ' - '}}</a> </li>
+                        <li class="list-group-item">Blog:
+                            <a href="{{usuario.blog ? usuario.blog : ''}}" target="_blanck">{{usuario.blog ? usuario.blog : ' - '}}</a>
+                        </li>
+                        <li class="list-group-item">Usuario desde: {{usuario.created_at | date: 'dd/MM/yyyy'}}</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<br>
 <h3 class="page-header"> Repositorios</h3>
 <hr>
 <div class="row">
