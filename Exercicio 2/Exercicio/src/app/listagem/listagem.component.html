@@ -1,24 +1,17 @@
-<div class="jumbotron">
-    <h1 class="text-center">GitHub</h1>
-</div>
-
 <div class="container">
     <div class="row">
         <div class="col-sm-12">
             <form>
                 <input (keyup)="searchUser()" name="search" [(ngModel)]="search" class="form-control" placeholder="Pesquisar Usuario">
+                <br>
             </form>
         </div>
     </div>
-    <div class="container marketing">
-        <div class="row">
 
-            <div class="col-sm-3" *ngFor="let usuario of usuarios">
-                <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.url}}" login="{{usuario.login | uppercase}}">
-                </usuario>
-
-            </div>
+    <div class="row">
+        <div class="col-sm-3" *ngFor="let usuario of usuarios">
+            <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.url}}" login="{{usuario.login | uppercase}}">
+            </usuario>
         </div>
-
     </div>
 </div>

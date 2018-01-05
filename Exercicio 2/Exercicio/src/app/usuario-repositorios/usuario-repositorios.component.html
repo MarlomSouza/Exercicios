@@ -1,0 +1,15 @@
+<usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.url}}" login="{{usuario.login | uppercase}}">
+</usuario>
+
+<h3 class="page-header"> Repositorios</h3>
+<hr>
+<div class="row">
+    <div class="card-deck">
+        <div class="col-md-6" *ngFor="let repositorio of repositorios">
+            <repositorio id="{{repositorio.id}}" nome="{{repositorio.name}}" descricao="{{repositorio.description}}" url="{{repositorio.html_url}}" data_criacao="{{repositorio.created_at}}" clone_url="{{repositorio.clone_url}}" stars="{{repositorio.stargazers_count}}"
+                watchers="{{repositorio.watchers_count}}" linguagem="{{repositorio.language}}" forks="{{repositorio.forks_count}}" branch="{{repositorio.default_branch}}">
+            </repositorio>
+            <br>
+        </div>
+    </div>
+</div>

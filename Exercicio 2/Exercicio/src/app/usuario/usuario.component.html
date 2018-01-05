@@ -3,5 +3,8 @@
     <h2>{{login}}</h2>
     <span class="badge badge-info">Id Usuario : {{id_usuario}}</span>
     <br>
-    <a class="btn btn-danger" href="{{url}}">Ver Perfil »</a>
+    <a class="btn btn-danger" [routerLink]="['/usuario_repositorio', login]" role="button">Ver Perfil »
+        <span class="fa fa-github" aria-hidden="true"></span>
+    </a>
+
 </div>

@@ -7,12 +7,14 @@ import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { HttpModule } from '@angular/http';
-import { RepositoriosComponent } from './repositorios/repositorios.component';
+import { RepositorioComponent } from './repositorio/repositorio.component';
 import { FormsModule } from "@angular/forms";
+import { rounting } from './app.routes';
+import { UsuarioRepositoriosComponent } from './usuario-repositorios/usuario-repositorios.component';
 
 @NgModule({
-  imports: [BrowserModule, HttpModule, FormsModule],
-  declarations: [AppComponent, LoginComponent, UsuarioComponent, ListagemComponent, RepositoriosComponent],
+  imports: [BrowserModule, HttpModule, FormsModule, rounting],
+  declarations: [AppComponent, LoginComponent, UsuarioComponent, ListagemComponent, RepositorioComponent, UsuarioRepositoriosComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
