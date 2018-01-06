@@ -2,7 +2,7 @@
 
 namespace RH.Service.Interface
 {
-    interface ITecnologiaRepository : IRepository<Tecnologia>
+    public interface ITecnologiaRepository : IRepository<Tecnologia>
     {
     }
 }

@@ -9,37 +9,37 @@ namespace RH.Controllers
 {
     [Produces("application/json")]
     [Route("api/[Controller]")]
-    public class CandidatosController : Controller
+    public class TecnologiasController : Controller
     {
-        private readonly ICandidatoRepository service;
+        private readonly ITecnologiaRepository service;
 
-        public CandidatosController(ICandidatoRepository context)
+        public TecnologiasController(ITecnologiaRepository context)
         {
             service = context;
         }
 
-        // GET: api/Candidatos
+        // GET: api/Tecnologias
         [HttpGet]
-        public IEnumerable<Candidato> GetCandidato()
+        public IEnumerable<Tecnologia> GetTecnologia()
         {
             return service.List();
         }
 
-        // GET: api/Candidatos/5
+        // GET: api/Tecnologias/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetCandidato([FromRoute] int id)
+        public async Task<IActionResult> GetTecnologia([FromRoute] int id)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
             try
             {
-                var candidato = await service.GetById(id);
+                var tecnologia = await service.GetById(id);
 
-                if (candidato == null)
+                if (tecnologia == null)
                     return NotFound();
 
-                return Ok(candidato);
+                return Ok(tecnologia);
             }
             catch (Exception)
             {
@@ -47,19 +47,19 @@ namespace RH.Controllers
             }
         }
 
-        // PUT: api/Candidatos/5
+        // PUT: api/Tecnologias/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutCandidato([FromRoute] int id, [FromBody] Candidato candidato)
+        public async Task<IActionResult> PutTecnologia([FromRoute] int id, [FromBody] Tecnologia tecnologia)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            if (id != candidato.Id)
+            if (id != tecnologia.Id)
                 return BadRequest();
 
             try
             {
-                await service.Update(candidato);
+                await service.Update(tecnologia);
             }
             catch (Exception)
             {
@@ -69,36 +69,36 @@ namespace RH.Controllers
             return NoContent();
         }
 
-        // POST: api/Candidatos
+        // POST: api/Tecnologias
         [HttpPost]
-        public async Task<IActionResult> PostCandidato([FromBody] Candidato candidato)
+        public async Task<IActionResult> PostTecnologia([FromBody] Tecnologia tecnologia)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            await service.Insert(candidato);
+            await service.Insert(tecnologia);
 
-            return CreatedAtAction("GetCandidato", new { id = candidato.Id }, candidato);
+            return CreatedAtAction("GetTecnologia", new { id = tecnologia.Id }, tecnologia);
         }
 
-        // DELETE: api/Candidatos/5
+        // DELETE: api/Tecnologias/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCandidato([FromRoute] int id)
+        public async Task<IActionResult> DeleteTecnologia([FromRoute] int id)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            Candidato candidato = await service.GetById(id);
-            if (candidato == null)
+            Tecnologia tecnologia = await service.GetById(id);
+            if (tecnologia == null)
             {
                 return NotFound();
             }
 
-            await service.Delete(candidato);
+            await service.Delete(tecnologia);
 
-            return Ok(candidato);
+            return Ok(tecnologia);
         }
 
     }
