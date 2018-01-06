@@ -1,13 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
-namespace RH_API.Models
+namespace RH.Models
 {
     public class Candidato
     {
+        public Candidato()
+        {
+            Tecnologias = new HashSet<CandidatoTecnologia>();
+        }
+
         public int Id { get; set; }
         public string Nome { get; set; }
+
+        public IEnumerable<CandidatoTecnologia> Tecnologias { get; set; }
     }
 }

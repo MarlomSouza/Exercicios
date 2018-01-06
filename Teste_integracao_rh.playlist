@@ -1,0 +1,1 @@
+<Playlist Version="1.0"><Add Test="ExercicioTest.CandidatoTest.Obter_candidato_inexistente (a9fe25c4c2b1d0d5b93db168b263b307d46dcbba)" /><Add Test="ExercicioTest.CandidatoTest.Obter_candidato_por_id (40999484a2817177ed1fcb8161d5ab4ae5769621)" /><Add Test="ExercicioTest.CandidatoTest.Cadastrar_UsuarioAsync (ffa6436d2a05859a8911549fd320cf89b86b0ac9)" /></Playlist>

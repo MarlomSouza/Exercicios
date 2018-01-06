@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RH.Models;
 using RH.Service;
-using RH_API.Models;
 
-namespace RH_API.Controllers
+namespace RH.Controllers
 {
     [Produces("application/json")]
     [Route("api/[Controller]")]
     public class CandidatosController : Controller
     {
-        private readonly ICandidatoService service;
+        private readonly ICandidatoRepository service;
 
-        public CandidatosController(ICandidatoService context)
+        public CandidatosController(ICandidatoRepository context)
         {
             service = context;
         }
@@ -25,7 +25,7 @@ namespace RH_API.Controllers
         [HttpGet]
         public IEnumerable<Candidato> GetCandidato()
         {
-            return service.GetAll();
+            return service.List();
         }
 
         // GET: api/Candidatos/5
@@ -33,18 +33,21 @@ namespace RH_API.Controllers
         public async Task<IActionResult> GetCandidato([FromRoute] int id)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
+
+            try
+            {
+                var candidato = await service.GetById(id);
+
+                if (candidato == null)
+                    return NotFound();
+
+                return Ok(candidato);
             }
-
-            var candidato = await service.GetById(id);
-
-            if (candidato == null)
+            catch (Exception)
             {
                 return NotFound();
             }
-
-            return Ok(candidato);
         }
 
         // PUT: api/Candidatos/5
@@ -52,31 +55,18 @@ namespace RH_API.Controllers
         public async Task<IActionResult> PutCandidato([FromRoute] int id, [FromBody] Candidato candidato)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
             if (id != candidato.Id)
-            {
                 return BadRequest();
-            }
-
-            service.Entry(candidato).State = EntityState.Modified;
 
             try
             {
-                await service.SaveChangesAsync();
+                await service.Update(candidato);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (Exception)
             {
-                if (!CandidatoExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return StatusCode(500);
             }
 
             return NoContent();
@@ -87,11 +77,9 @@ namespace RH_API.Controllers
         public async Task<IActionResult> PostCandidato([FromBody] Candidato candidato)
         {
             if (!ModelState.IsValid)
-            {
                 return BadRequest(ModelState);
-            }
 
-            await service.AddAsync(candidato);
+            await service.Insert(candidato);
 
             return CreatedAtAction("GetCandidato", new { id = candidato.Id }, candidato);
         }
@@ -111,9 +99,7 @@ namespace RH_API.Controllers
                 return NotFound();
             }
 
-            service.Delete(candidato);
-            //service.Candidatos.Remove(candidato);
-            //await service.SaveChangesAsync();
+            await service.Delete(candidato);
 
             return Ok(candidato);
         }
