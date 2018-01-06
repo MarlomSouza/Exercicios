@@ -5,7 +5,6 @@ import { ActivatedRoute } from "@angular/router";
 import { UsuarioComponent } from '../usuario/usuario.component';
 import { UsuarioService } from '../usuario/usuario.service';
 
-
 @Component({
   moduleId: module.id,
   selector: 'app-usuario-repositorios',
