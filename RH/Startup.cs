@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.Webpack;
@@ -35,7 +31,7 @@ namespace RH
             services.AddDbContext<Context>(opt => opt.UseInMemoryDatabase("RH_API"));
             services.AddTransient<ICandidatoRepository, CandidatoRepository>();
             services.AddTransient<ITecnologiaRepository, TecnologiaRepository>();
-
+            services.AddTransient<IProcessoRepository, ProcessoRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

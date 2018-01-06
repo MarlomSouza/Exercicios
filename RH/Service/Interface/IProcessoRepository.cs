@@ -2,7 +2,7 @@
 
 namespace RH.Service.Interface
 {
-    interface IProcessoRepository : IRepository<Processo>
+    public interface IProcessoRepository : IRepository<Processo>
     {
     }
 }
