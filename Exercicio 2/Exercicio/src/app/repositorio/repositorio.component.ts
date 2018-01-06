@@ -22,10 +22,6 @@ export class RepositorioComponent {
   @Input() forks: number;
   @Input() branch: string;
   
-
   constructor()  {
    }
-
-
-
 }

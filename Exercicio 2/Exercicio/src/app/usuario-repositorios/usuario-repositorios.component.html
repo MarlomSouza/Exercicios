@@ -13,6 +13,7 @@
 <div class="row">
     <div class="col-md-3">
         <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" url="{{usuario.html_url}}">
+            Carregando...
         </usuario>
     </div>
     <br>
@@ -43,7 +44,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">Localização: {{usuario.location ? usuario.location: ' - '}}</li>
                         <li class="list-group-item">Email:
-                            <a href="mailto: {{usuario.email? usuario.email : ''}}" target="_blanck">{{usuario.email ? usuario.email : ' - '}}</a> </li>
+                            <a href="mailto: {{usuario.email? usuario.email : ''}}">{{usuario.email ? usuario.email : ' - '}}</a> </li>
                         <li class="list-group-item">Blog:
                             <a href="{{usuario.blog ? usuario.blog : ''}}" target="_blanck">{{usuario.blog ? usuario.blog : ' - '}}</a>
                         </li>
@@ -58,13 +59,21 @@
 <br>
 <h3 class="page-header"> Repositorios</h3>
 <hr>
-<div class="row">
+<div *ngIf="repositorios.length != 0" class="row">
     <div class="card-deck">
         <div class="col-md-6" *ngFor="let repositorio of repositorios">
             <repositorio id="{{repositorio.id}}" nome="{{repositorio.name}}" descricao="{{repositorio.description}}" url="{{repositorio.html_url}}" data_criacao="{{repositorio.created_at}}" clone_url="{{repositorio.clone_url}}" stars="{{repositorio.stargazers_count}}"
                 watchers="{{repositorio.watchers_count}}" linguagem="{{repositorio.language}}" forks="{{repositorio.forks_count}}" branch="{{repositorio.default_branch}}">
+                Carregando
             </repositorio>
             <br>
         </div>
     </div>
+
+    <div *ngIf="service.header_link" class="col-sm-12">
+        <button (click)="obterMaisRepositorios()" type="button" class="btn btn-primary btn-block"> + Carregar mais</button>
+    </div>
+</div>
+<div *ngIf="repositorios.length == 0" class="alert alert-danger" role="alert">
+    <strong>Poxa vida!</strong> O usuario não possui nenhum repositório;
 </div>

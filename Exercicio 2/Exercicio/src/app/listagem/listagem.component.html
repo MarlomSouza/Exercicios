@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-sm-12">
         <form>
-            <input (keyup)="searchUser()" name="search" [(ngModel)]="search" class="form-control" placeholder="Pesquisar Usuario">
+            <input (keyup)="buscarUsuario()" name="busca" [(ngModel)]="busca" class="form-control" placeholder="Pesquisar Usuario">
             <br>
         </form>
     </div>
@@ -10,11 +10,12 @@
 <div *ngIf="usuarios.length > 0" class="row">
     <div class="col-sm-4" *ngFor="let usuario of usuarios">
         <usuario avatar_url="{{usuario.avatar_url}}" id_usuario=" {{usuario.id}}" login="{{usuario.login | uppercase}}">
+            Carregando...
         </usuario>
     </div>
 
-    <div class="col-sm-12">
-        <button (click)="obterMaisUsuarios()" type="button" class="btn btn-primary btn-lg btn-block">+ 10 Usuarios</button>
+    <div *ngIf="service.header_link" class="col-sm-12">
+        <button (click)="obterMaisUsuarios()" type="button" class="btn btn-primary btn-block"> + Carregar mais</button>
     </div>
 </div>
 

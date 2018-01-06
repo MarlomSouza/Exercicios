@@ -11,11 +11,12 @@ import { RepositorioComponent } from './repositorio/repositorio.component';
 import { FormsModule } from "@angular/forms";
 import { rounting } from './app.routes';
 import { UsuarioRepositoriosComponent } from './usuario-repositorios/usuario-repositorios.component';
+import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, rounting],
   declarations: [AppComponent, LoginComponent, UsuarioComponent, ListagemComponent, RepositorioComponent, UsuarioRepositoriosComponent],
-  providers: [],
+  providers: [UsuarioService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
