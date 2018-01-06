@@ -48,15 +48,7 @@ export class UsuarioRepositoriosComponent implements OnInit {
   obterMaisRepositorios(){
     this.service
     .carregarMais()
-    .subscribe(repositorios => 
-    {
-        this.repositorios = this.repositorios.concat(repositorios.json());
-        
-        this.service.header_link = repositorios.headers.get("link");
-        if(this.service.header_link.includes("next") == false){
-          this.service.header_link = undefined;
-        }
-    }), error => console.log("ERRO ====>>> ", error);
+    .subscribe(repositorios => this.repositorios = this.repositorios.concat(repositorios)), error => console.log("ERRO ====>>> ", error);
   };
 
 

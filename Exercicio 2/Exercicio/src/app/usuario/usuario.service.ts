@@ -47,8 +47,15 @@ export class UsuarioService {
                     });
   };
   
-  carregarMais() :Observable<Response>  {
-    return this.http.get(this.parse_link_header(this.header_link).url);
+  carregarMais()  {
+    return this.http.get(this.parse_link_header(this.header_link).url)
+    .map((rep) => {
+      this.header_link = rep.headers.get("link");
+        if(this.header_link.includes("next") == false){
+          this.header_link = undefined;
+        }
+      return rep.json()
+    });
   };
 
   parse_link_header(header:string) : Link {

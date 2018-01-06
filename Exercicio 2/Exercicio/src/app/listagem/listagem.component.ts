@@ -48,7 +48,6 @@ export class ListagemComponent implements OnInit {
     this.service
         .listarUsuariosAproximacao(this.busca)
         .subscribe(usuarios => this.usuarios = usuarios), error => console.log("ERRO ====>>> ", error);
-
   }
 
   obterMaisUsuarios(){
@@ -58,11 +57,10 @@ export class ListagemComponent implements OnInit {
     .subscribe(usuarios => 
       {
         if(this.busca.length ==0)
-          this.usuarios = this.usuarios.concat(usuarios.json());   
+          this.usuarios = this.usuarios.concat(usuarios);   
         else
-          this.usuarios = this.usuarios.concat(usuarios.json().items);   
+          this.usuarios = this.usuarios.concat(usuarios.items);   
 
-          this.service.header_link = usuarios.headers.get("link");
       }), error => console.log("ERRO ====>>> ", error);
   };
   
