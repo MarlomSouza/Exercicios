@@ -1,3 +1,42 @@
-<p>
-  cadastrar-candidato works!
-</p>
+<div class="row">
+    <h2>Listagem de Candidatos</h2>
+    <hr>
+</div>
+
+<div class="col-sm-12 ">
+    <a class="btn btn-success pull-right" [routerLink]="['/cadastra-candidado']" role="button"> <span class='glyphicon glyphicon-plus'></span> Cadastrar candidato
+    </a>
+</div>
+
+<div class="row">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Quantidade Linguagem conhecida </th>
+                <th>Quantidade Processo participando</th>
+                <td>Opções</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let candidato of candidatos; let indice = index">
+            <tr>
+                <th scope="row">{{candidato.id}}</th>
+                <td>{{candidato.nome}}</td>
+                <td>{{candidato.tecnologias.length}}</td>
+                <td>{{candidato.processosseletivos.length}}</td>
+                <td>
+                    <a class="btn btn-primary" [routerLink]="['/cadastra-candidato', candidato.id]" role="button">
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+
+                    <a class="btn btn-danger" (click)="excluir(candidato.id, indice)" role="button">
+                        <span class='glyphicon glyphicon-trash'></span>
+                    </a>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

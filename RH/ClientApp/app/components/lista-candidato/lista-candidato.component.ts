@@ -7,11 +7,11 @@ import { CandidatoService, Candidato } from '../../service/candidato.service';
 })
 export class ListaCandidatoComponent implements OnInit {
 
-  private service: CandidatoService;
+  private _service: CandidatoService;
   candidatos : Candidato[] = []
 
   constructor(service: CandidatoService) { 
-    this.service = service;
+    this._service = service;
   }
 
   ngOnInit() {
@@ -19,9 +19,18 @@ export class ListaCandidatoComponent implements OnInit {
   }
 
   private listarCandidatos(){
-    this.service.listarCandidatos()
+    this._service.listarCandidatos()
     .subscribe(candidatos => this.candidatos = candidatos);
   }
 
+  excluir(id: number, index: number){
+    this._service.excluirUsuario(id).subscribe(() => {
+
+      this.candidatos.splice(index , 1);
+
+      console.log("Candidato excluido com sucesso!");
+
+    }, error => console.log("ERRO ===> ", error));
+  }
 }
 

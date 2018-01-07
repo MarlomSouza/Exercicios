@@ -8,7 +8,7 @@ export class CandidatoService {
 
   private http: Http;
   private baseUrl: string;
-  private api: string = "/api/Candidatos";
+  private api: string = "api/Candidatos";
 
 
   constructor(http: Http, @Inject('BASE_URL') baseUrl: string) { 
@@ -27,10 +27,10 @@ export class CandidatoService {
   };
 
   salvarCandidato(candidato: Candidato) {
-    if(candidato.Id)
+    if(candidato.id)
       return this.http.post(this.baseUrl + this.api, candidato);
 
-    return this.http.put(this.baseUrl + this.api + "/" + candidato.Id,  candidato);
+    return this.http.put(this.baseUrl + this.api + "/" + candidato.id,  candidato);
   }
 
   excluirUsuario(id: number){
@@ -40,7 +40,7 @@ export class CandidatoService {
 }
 
 export interface Candidato {
-  Id: number;
-  Nome: string;
+  id: number;
+  nome: string;
 }
 
