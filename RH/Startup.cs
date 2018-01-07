@@ -27,8 +27,8 @@ namespace RH
                 options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             });
 
-            //services.AddDbContext<Context>(opt => opt.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RH_API;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
-            services.AddDbContext<Context>(opt => opt.UseInMemoryDatabase("RH_API"));
+            services.AddDbContext<Context>(opt => opt.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=RH_API;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=True;ApplicationIntent=ReadWrite;MultiSubnetFailover=False"));
+            //services.AddDbContext<Context>(opt => opt.UseInMemoryDatabase("RH_API"));
             services.AddTransient<ICandidatoRepository, CandidatoRepository>();
             services.AddTransient<ITecnologiaRepository, TecnologiaRepository>();
             services.AddTransient<IProcessoRepository, ProcessoRepository>();

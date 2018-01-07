@@ -10,10 +10,12 @@ namespace RH.Models
         public Processo()
         {
             Tecnologias = new HashSet<ProcessoTecnologia>();
+            Candidatos = new HashSet<CandidatoProcesso>();
         }
 
         public int Id { get; set; }
         public string Nome { get; set; }
         public ICollection<ProcessoTecnologia> Tecnologias { get; set; }
+        public ICollection<CandidatoProcesso> Candidatos { get; set; }
     }
 }

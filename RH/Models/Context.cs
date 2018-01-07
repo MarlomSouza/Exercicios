@@ -18,6 +18,9 @@ namespace RH.Models
 
             modelBuilder.Entity<CandidatoTecnologia>()
              .HasKey(ct => new { ct.CandidatoId, ct.TecnologiaId });
+
+            modelBuilder.Entity<CandidatoProcesso>()
+         .HasKey(cp => new { cp.CandidatoId, cp.ProcessoId });
         }
 
 
