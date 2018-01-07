@@ -15,9 +15,6 @@
         <select multiple class="form-control" name="tecnologias" [(ngModel)]="tecnologiasSelecionadas">
             <option selected="true" *ngFor="let tecnologia of tecnologias" name="id" value= {{tecnologia.id}}>{{tecnologia.nome}}</option>
         </select>
-        <!-- <label *ngFor="let tecnologia of tecnologias" class="checkbox-inline">
-            <input type="checkbox" name="tecnologias"  [(ngModel)]="tecnologiasSelecionadas" value="{{tecnologia.id}}">{{tecnologia.nome}}
-        </label> -->
     </div>
 
     <button type="submit" class="btn btn-primary">Salvar</button>

@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 
 import 'rxjs/add/operator/map';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { ListagemComponent } from './listagem/listagem.component';
 import { HttpModule } from '@angular/http';
@@ -15,7 +14,7 @@ import { UsuarioService } from './usuario/usuario.service';
 
 @NgModule({
   imports: [BrowserModule, HttpModule, FormsModule, rounting],
-  declarations: [AppComponent, LoginComponent, UsuarioComponent, ListagemComponent, RepositorioComponent, UsuarioRepositoriosComponent],
+  declarations: [AppComponent, UsuarioComponent, ListagemComponent, RepositorioComponent, UsuarioRepositoriosComponent],
   providers: [UsuarioService],
   bootstrap: [AppComponent]
 })

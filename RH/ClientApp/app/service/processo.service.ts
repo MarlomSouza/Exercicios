@@ -20,7 +20,7 @@ export class ProcessoService {
   };
 
   listarProcesso(id: number) : Observable<Processo> {
-    return this.http.get(this.baseUrl + this.api+ "/" + id)
+    return this.http.get(this.baseUrl + this.api + "/" + id)
     .map(res => res.json());
   };
 

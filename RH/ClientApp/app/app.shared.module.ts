@@ -54,8 +54,7 @@ import { CadastraTriagemComponent } from './components/cadastra-triagem/cadastra
             { path: 'cadastra-tecnologia', component: CadastraTecnologiaComponent },
             { path: 'cadastra-tecnologia/:id', component: CadastraTecnologiaComponent },
             { path: 'cadastra-processo', component: CadastraProcessoComponent },
-            { path: 'cadastra-triagem/:id', component: CadastraTriagemComponent },
-
+            { path: 'cadastra-processo/:id', component: CadastraProcessoComponent },
             
             { path: '**', redirectTo: 'home' }
         ])
