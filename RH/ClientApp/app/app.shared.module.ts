@@ -14,6 +14,10 @@ import { ListaCandidatoComponent } from './components/lista-candidato/lista-cand
 import { ListaProcessoComponent } from './components/lista-processo/lista-processo.component';
 import { CadastraCandidatoComponent } from './components/cadastra-candidato/cadastra-candidato.component';
 import { CadastraTecnologiaComponent } from './components/cadastra-tecnologia/cadastra-tecnologia.component';
+import { CadastraProcessoComponent } from './components/cadastra-processo/cadastra-processo.component';
+import { ListaTriagemComponent } from './components/lista-triagem/lista-triagem.component';
+import { CadastraTriagemComponent } from './components/cadastra-triagem/cadastra-triagem.component';
+
 
 
 @NgModule({
@@ -27,7 +31,10 @@ import { CadastraTecnologiaComponent } from './components/cadastra-tecnologia/ca
         ListaCandidatoComponent,
         ListaProcessoComponent,
         CadastraCandidatoComponent,
-        CadastraTecnologiaComponent
+        CadastraTecnologiaComponent,
+        CadastraProcessoComponent,
+        CadastraTriagemComponent,
+        ListaTriagemComponent
     ],
     imports: [
         CommonModule,
@@ -41,10 +48,15 @@ import { CadastraTecnologiaComponent } from './components/cadastra-tecnologia/ca
             { path: 'lista-tecnologia', component: ListaTecnologiaComponent },
             { path: 'lista-candidato', component: ListaCandidatoComponent },
             { path: 'lista-processo', component: ListaProcessoComponent },
+            { path: 'lista-triagem', component: ListaTriagemComponent },
             { path: 'cadastra-candidato', component: CadastraCandidatoComponent },
             { path: 'cadastra-candidato/:id', component: CadastraCandidatoComponent },
             { path: 'cadastra-tecnologia', component: CadastraTecnologiaComponent },
             { path: 'cadastra-tecnologia/:id', component: CadastraTecnologiaComponent },
+            { path: 'cadastra-processo', component: CadastraProcessoComponent },
+            { path: 'cadastra-triagem/:id', component: CadastraTriagemComponent },
+
+            
             { path: '**', redirectTo: 'home' }
         ])
     ]
