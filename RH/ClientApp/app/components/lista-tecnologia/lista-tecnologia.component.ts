@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TecnologiaService, Tecnologia } from '../../service/tecnologia.service';
 
 @Component({
   selector: 'app-lista-tecnologia',
@@ -7,9 +8,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListaTecnologiaComponent implements OnInit {
 
-  constructor() { }
+  private service: TecnologiaService;
+  mensagem: string;
+  tecnologias : Tecnologia[] = []
+
+  constructor(service: TecnologiaService) {
+    this.service = service;
+   }
 
   ngOnInit() {
+    this.listarTecnologias();
+  }
+
+  private listarTecnologias(){
+    this.service.listarTecnologias()
+    .subscribe(tecnologias => this.tecnologias = tecnologias);
+  }
+
+  excluir(id: number, index: number){
+    this.service.excluirTecnologia(id).subscribe(() => {
+
+      this.tecnologias.splice(index , 1);
+
+      console.log("Tecnologia excluida com sucesso!");
+
+    }, error => console.log("ERRO ===> ", error));
   }
 
 }

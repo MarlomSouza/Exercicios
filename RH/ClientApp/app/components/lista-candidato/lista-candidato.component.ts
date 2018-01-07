@@ -15,10 +15,10 @@ export class ListaCandidatoComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listaCandidatos();
+    this.listarCandidatos();
   }
 
-  private listaCandidatos(){
+  private listarCandidatos(){
     this.service.listarCandidatos()
     .subscribe(candidatos => this.candidatos = candidatos);
   }

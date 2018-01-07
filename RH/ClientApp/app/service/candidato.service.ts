@@ -1,6 +1,7 @@
 import { Injectable,Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operator/map';
 
 @Injectable()
 export class CandidatoService {
@@ -15,7 +16,7 @@ export class CandidatoService {
     this.baseUrl = baseUrl;
   }
 
-  listarCandidatos() :  Observable<Candidato[]> {
+  listarCandidatos() {
     return this.http.get(this.baseUrl + this.api)
     .map(res => res.json());
   };
@@ -28,10 +29,8 @@ export class CandidatoService {
   salvarCandidato(candidato: Candidato) {
     if(candidato.Id)
       return this.http.post(this.baseUrl + this.api, candidato);
-      // .subscribe(() => {console.log("Candidato salvo com sucesso!")});
 
     return this.http.put(this.baseUrl + this.api + "/" + candidato.Id,  candidato);
-    // .subscribe(() => {console.log("Candidato alterado com sucesso!")});
   }
 
   excluirUsuario(id: number){

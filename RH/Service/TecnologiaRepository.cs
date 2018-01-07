@@ -26,7 +26,7 @@ namespace RH.Service
 
         public Task<Tecnologia> GetById(int id)
         {
-            return _dbContext.Tecnologias.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).FirstAsync(c => c.Id.Equals(id));
+            return _dbContext.Tecnologias.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processos).ThenInclude(p => p.Processo).FirstAsync(c => c.Id.Equals(id));
         }
 
         public Task Insert(Tecnologia tecnologia)
@@ -37,7 +37,7 @@ namespace RH.Service
 
         public IEnumerable<Tecnologia> List()
         {
-            return _dbContext.Tecnologias.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).AsEnumerable();
+            return _dbContext.Tecnologias.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processos).ThenInclude(p => p.Processo).AsEnumerable();
         }
 
         public Task Update(Tecnologia tecnologia)

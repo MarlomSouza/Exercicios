@@ -1,3 +1,42 @@
-<p>
-  lista-tecnologia works!
-</p>
+<div class="row">
+    <h2>Listagem de tecnologias</h2>
+    <hr>
+</div>
+
+<div class="col-sm-12 ">
+    <a class="btn btn-success pull-right" [routerLink]="['/cadastra-tecnologia']" role="button"> <span class='glyphicon glyphicon-plus'></span> Cadastrar Tecnologia
+    </a>
+</div>
+
+<div class="row">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Quantidade Candidatos </th>
+                <th>Quantidade Processo participando</th>
+                <td>Opções</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let tecnologia of tecnologias; let indice = index">
+            <tr>
+                <th scope="row">{{tecnologia.id}}</th>
+                <td>{{tecnologia.nome}}</td>
+                <td>{{tecnologia.candidatos.length}}</td>
+                <td>{{tecnologia.processos.length}}</td>
+                <td>
+                    <a class="btn btn-primary" [routerLink]="['/cadastra-tecnologia', tecnologia.id]" role="button">
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+
+                    <a class="btn btn-danger" (click)="excluir(tecnologia.id, indice)" role="button">
+                        <span class='glyphicon glyphicon-trash'></span>
+                    </a>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+</div>

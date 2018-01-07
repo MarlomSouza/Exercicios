@@ -13,6 +13,7 @@ import { ListaTecnologiaComponent } from './components/lista-tecnologia/lista-te
 import { ListaCandidatoComponent } from './components/lista-candidato/lista-candidato.component';
 import { ListaProcessoComponent } from './components/lista-processo/lista-processo.component';
 import { CadastraCandidatoComponent } from './components/cadastra-candidato/cadastra-candidato.component';
+import { CadastraTecnologiaComponent } from './components/cadastra-tecnologia/cadastra-tecnologia.component';
 
 
 @NgModule({
@@ -26,6 +27,7 @@ import { CadastraCandidatoComponent } from './components/cadastra-candidato/cada
         ListaCandidatoComponent,
         ListaProcessoComponent,
         CadastraCandidatoComponent,
+        CadastraTecnologiaComponent
     ],
     imports: [
         CommonModule,
@@ -38,9 +40,11 @@ import { CadastraCandidatoComponent } from './components/cadastra-candidato/cada
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'lista-tecnologia', component: ListaTecnologiaComponent },
             { path: 'lista-candidato', component: ListaCandidatoComponent },
-            { path: 'lista-candidato', component: ListaProcessoComponent },
+            { path: 'lista-processo', component: ListaProcessoComponent },
             { path: 'cadastra-candidato', component: CadastraCandidatoComponent },
             { path: 'cadastra-candidato/:id', component: CadastraCandidatoComponent },
+            { path: 'cadastra-tecnologia', component: CadastraTecnologiaComponent },
+            { path: 'cadastra-tecnologia/:id', component: CadastraTecnologiaComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

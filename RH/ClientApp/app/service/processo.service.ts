@@ -1,13 +1,14 @@
 import { Injectable,Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { Candidato } from './candidato.service';
 
 @Injectable()
 export class ProcessoService {
 
   private http: Http;
   private baseUrl: string;
-  private api: string = "/api/Processos";
+  private api: string = "api/Processos";
 
 
   constructor(http: Http, @Inject('BASE_URL') baseUrl: string) { 
@@ -26,12 +27,10 @@ export class ProcessoService {
   };
 
   salvarProcesso(processo: Processo) {
-    if(processo.Id)
+    if(processo.id)
       return this.http.post(this.baseUrl + this.api, processo);
-      // .subscribe(() => {console.log("processo salvo com sucesso!")});
 
-    return this.http.put(this.baseUrl + this.api + "/" + processo.Id,  processo);
-    // .subscribe(() => {console.log("processo alterado com sucesso!")});
+    return this.http.put(this.baseUrl + this.api + "/" + processo.id,  processo);
   }
 
   excluirProcesso(id: number){
@@ -41,7 +40,8 @@ export class ProcessoService {
 }
 
 export interface Processo {
-  Id: number;
-  Nome: string;
+  id: number;
+  nome: string;
+  candidatos: object[];
 }
 

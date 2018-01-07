@@ -1,13 +1,14 @@
 import { Injectable,Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
+import { map } from 'rxjs/operator/map';
 
 @Injectable()
 export class TecnologiaService {
 
   private http: Http;
   private baseUrl: string;
-  private api: string = "/api/Tecnologias";
+  private api: string = "api/Tecnologias";
 
 
   constructor(http: Http, @Inject('BASE_URL') baseUrl: string) { 
@@ -26,12 +27,10 @@ export class TecnologiaService {
   };
 
   salvarTecnologia(tecnologia: Tecnologia) {
-    if(tecnologia.Id)
-      return this.http.post(this.baseUrl + this.api, tecnologia);
-      // .subscribe(() => {console.log("Candidato salvo com sucesso!")});
-
-    return this.http.put(this.baseUrl + this.api + "/" + tecnologia.Id,  tecnologia);
-    // .subscribe(() => {console.log("Candidato alterado com sucesso!")});
+    if(tecnologia.id)
+      return this.http.put(this.baseUrl + this.api + "/" + tecnologia.id,  tecnologia);
+      
+    return this.http.post(this.baseUrl + this.api, tecnologia);
   }
 
   excluirTecnologia(id: number){
@@ -40,8 +39,8 @@ export class TecnologiaService {
   
 }
 
-export interface Tecnologia {
-  Id: number;
-  Nome: string;
+export class Tecnologia {
+  id: number;
+  nome: string;
 }
 
