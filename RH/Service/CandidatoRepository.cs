@@ -19,12 +19,12 @@ namespace RH.Service
 
         public Task<Candidato> GetById(int id)
         {
-            return _dbContext.Candidatos.Include(c => c.Tecnologias).ThenInclude(t => t.Tecnologia).FirstAsync(c => c.Id.Equals(id));
+            return _dbContext.Candidatos.Include(c => c.Tecnologias).ThenInclude(t => t.Tecnologia).Include(c => c.ProcessosSeletivos).ThenInclude(p => p.Processo).FirstAsync(c => c.Id.Equals(id));
         }
 
         public IEnumerable<Candidato> List()
         {
-            return _dbContext.Candidatos.Include(c => c.Tecnologias).ThenInclude(t => t.Tecnologia).AsEnumerable();
+            return _dbContext.Candidatos.Include(c => c.Tecnologias).ThenInclude(t => t.Tecnologia).Include(c => c.ProcessosSeletivos).ThenInclude(p => p.Processo).AsEnumerable();
         }
 
         public Task Insert(Candidato candidato)

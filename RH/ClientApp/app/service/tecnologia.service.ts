@@ -3,11 +3,11 @@ import { Http } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 
 @Injectable()
-export class CandidatoService {
+export class TecnologiaService {
 
   private http: Http;
   private baseUrl: string;
-  private api: string = "/api/Candidatos";
+  private api: string = "/api/Tecnologias";
 
 
   constructor(http: Http, @Inject('BASE_URL') baseUrl: string) { 
@@ -15,32 +15,32 @@ export class CandidatoService {
     this.baseUrl = baseUrl;
   }
 
-  listarCandidatos() :  Observable<Candidato[]> {
+  listarTecnologias() : Observable<Tecnologia[]> {
     return this.http.get(this.baseUrl + this.api)
     .map(res => res.json());
   };
 
-  listarCandidato(id: number) : Observable<Candidato> {
+  listarTecnologia(id: number) : Observable<Tecnologia> {
     return this.http.get(this.baseUrl + this.api+ "/" + id)
     .map(res => res.json());
   };
 
-  salvarCandidato(candidato: Candidato) {
-    if(candidato.Id)
-      return this.http.post(this.baseUrl + this.api, candidato);
+  salvarTecnologia(tecnologia: Tecnologia) {
+    if(tecnologia.Id)
+      return this.http.post(this.baseUrl + this.api, tecnologia);
       // .subscribe(() => {console.log("Candidato salvo com sucesso!")});
 
-    return this.http.put(this.baseUrl + this.api + "/" + candidato.Id,  candidato);
+    return this.http.put(this.baseUrl + this.api + "/" + tecnologia.Id,  tecnologia);
     // .subscribe(() => {console.log("Candidato alterado com sucesso!")});
   }
 
-  excluirUsuario(id: number){
+  excluirTecnologia(id: number){
     return this.http.delete(this.baseUrl + this.api + "/" + id );
   }
-
+  
 }
 
-export interface Candidato {
+export interface Tecnologia {
   Id: number;
   Nome: string;
 }

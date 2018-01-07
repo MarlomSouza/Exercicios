@@ -20,6 +20,7 @@ namespace ExercicioTest
 
         public CandidatoTest()
         {
+            Mock a = new Mock<>()
             _server = new TestServer(new WebHostBuilder()
             .UseStartup<Startup>());
             _client = _server.CreateClient();

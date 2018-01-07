@@ -9,7 +9,11 @@ import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { ListaTecnologiaComponent } from './components/lista-tecnologia/lista-tecnologia.component';
 import { ListaCandidatoComponent } from './components/lista-candidato/lista-candidato.component';
+import { ListaProcessoComponent } from './components/lista-processo/lista-processo.component';
+import { CadastraCandidatoComponent } from './components/cadastra-candidato/cadastra-candidato.component';
+
 
 @NgModule({
     declarations: [
@@ -18,7 +22,10 @@ import { ListaCandidatoComponent } from './components/lista-candidato/lista-cand
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        ListaCandidatoComponent
+        ListaTecnologiaComponent,
+        ListaCandidatoComponent,
+        ListaProcessoComponent,
+        CadastraCandidatoComponent,
     ],
     imports: [
         CommonModule,
@@ -29,7 +36,11 @@ import { ListaCandidatoComponent } from './components/lista-candidato/lista-cand
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
+            { path: 'lista-tecnologia', component: ListaTecnologiaComponent },
             { path: 'lista-candidato', component: ListaCandidatoComponent },
+            { path: 'lista-candidato', component: ListaProcessoComponent },
+            { path: 'cadastra-candidato', component: CadastraCandidatoComponent },
+            { path: 'cadastra-candidato/:id', component: CadastraCandidatoComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

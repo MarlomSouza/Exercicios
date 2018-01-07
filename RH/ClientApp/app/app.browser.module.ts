@@ -6,6 +6,8 @@ import { CandidatoService } from './service/candidato.service';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/map';
+import { ProcessoService } from './service/processo.service';
+import { TecnologiaService } from './service/tecnologia.service';
 
 
 @NgModule({
@@ -17,7 +19,7 @@ import 'rxjs/add/operator/map';
         FormsModule,
     ],
     providers: [
-        CandidatoService, { provide: 'BASE_URL', useFactory: getBaseUrl }
+        CandidatoService, ProcessoService, TecnologiaService, { provide: 'BASE_URL', useFactory: getBaseUrl }
     ]
 })
 export class AppModule {

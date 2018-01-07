@@ -1,9 +1,29 @@
-<p>
-    lista-candidato works!
-</p>
-<h2>Selecione o candidato: </h2>
-<select>
-  <option *ngFor="let pais of candidatos" value= {{pais.id}}>
-    {{pais.nome}}
-  </option>
-</select>
+<div class="row">
+    <h2>Candidatos</h2>
+</div>
+<hr>
+<div class="col-sm-12 ">
+    <a class="btn btn-primary pull-right" [routerLink]="['/cadastra-candidato']" role="button"> Cadastrar candidato 
+    </a>
+</div>
+
+<div class="row">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Nome</th>
+                <th>Tecnologias conhecidas</th>
+                <th>Processos participando</th>
+            </tr>
+        </thead>
+        <tbody *ngFor="let candidato of candidatos">
+            <tr>
+                <th scope="row">{{candidato.id}}</th>
+                <td>{{candidato.nome}}</td>
+                <td>candidato.tecnologias</td>
+                <td>candidato.parcipando</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
