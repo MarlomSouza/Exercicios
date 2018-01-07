@@ -28,19 +28,24 @@ export class CandidatoService {
 
   salvarCandidato(candidato: Candidato) {
     if(candidato.id)
+      return this.http.put(this.baseUrl + this.api + "/" + candidato.id,  candidato);
+    
       return this.http.post(this.baseUrl + this.api, candidato);
-
-    return this.http.put(this.baseUrl + this.api + "/" + candidato.id,  candidato);
   }
 
   excluirUsuario(id: number){
     return this.http.delete(this.baseUrl + this.api + "/" + id );
   }
-
 }
 
-export interface Candidato {
+export class Candidato {
   id: number;
   nome: string;
+  tecnologias: CandidatoTecnologia[] = [];
+}
+
+export class CandidatoTecnologia {
+  candidatoId: number;
+  tecnologiaId: number;
 }
 
