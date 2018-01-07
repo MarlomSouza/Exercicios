@@ -32,13 +32,16 @@ namespace ExercicioTest.RH
         public async void Obter_tecnologia_por_id()
         {
             // Act
-            var tecnologia = CriarTecnologia(2, "C#");
+            var tecnologia = CriarTecnologia("C#");
             var tecnologiaJson = JsonConvert.SerializeObject(tecnologia);
             var content = new StringContent(tecnologiaJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
-
-            resposta = await _client.GetAsync(API + "/2");
             var responseString = await resposta.Content.ReadAsStringAsync();
+            tecnologia = JsonConvert.DeserializeObject<Tecnologia>(responseString);
+
+
+            resposta = await _client.GetAsync(API + "/" + tecnologia.Id);
+            responseString = await resposta.Content.ReadAsStringAsync();
             var _tecnologia = JsonConvert.DeserializeObject<Tecnologia>(responseString);
 
             // Assert
@@ -60,7 +63,7 @@ namespace ExercicioTest.RH
         public async void Cadastrar_Usuario()
         {
             //Act
-            var tecnologia = CriarTecnologia(5, "C#");
+            var tecnologia = CriarTecnologia("C#");
             var tecnologiaJson = JsonConvert.SerializeObject(tecnologia);
             HttpContent content = new StringContent(tecnologiaJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
@@ -77,7 +80,7 @@ namespace ExercicioTest.RH
         public async void Alterar_tecnologia()
         {
             //Salvar tecnologia
-            var tecnologia = CriarTecnologia(3, "java");
+            var tecnologia = CriarTecnologia("java");
             var tecnologiaJson = JsonConvert.SerializeObject(tecnologia);
             HttpContent content = new StringContent(tecnologiaJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
@@ -88,16 +91,17 @@ namespace ExercicioTest.RH
             Assert.Equal(tecnologia.Nome, _tecnologia.Nome);
 
             //Altera tecnologia
-            tecnologia = CriarTecnologia(id: 3);
+            tecnologia = CriarTecnologia();
+            tecnologia.Id = _tecnologia.Id;
             tecnologiaJson = JsonConvert.SerializeObject(tecnologia);
             content = new StringContent(tecnologiaJson, Encoding.UTF8, mediaType);
-            resposta = await _client.PutAsync(API + "/3", content);
+            resposta = await _client.PutAsync(API + "/" + _tecnologia.Id, content);
 
             //Assert
             Assert.Equal(HttpStatusCode.NoContent, resposta.StatusCode);
 
             //Obter tecnologia
-            resposta = await _client.GetAsync(API + "/3");
+            resposta = await _client.GetAsync(API + "/" + _tecnologia.Id);
             responseString = await resposta.Content.ReadAsStringAsync();
             _tecnologia = JsonConvert.DeserializeObject<Tecnologia>(responseString);
 
@@ -109,7 +113,7 @@ namespace ExercicioTest.RH
         public async void Deletar_tecnologia()
         {
             //Salvar tecnologia
-            var tecnologia = CriarTecnologia(4);
+            var tecnologia = CriarTecnologia();
             var tecnologiaJson = JsonConvert.SerializeObject(tecnologia);
             HttpContent content = new StringContent(tecnologiaJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
@@ -119,62 +123,24 @@ namespace ExercicioTest.RH
             //Assert
             Assert.Equal(tecnologia.Nome, _tecnologia.Nome);
 
-            resposta = await _client.DeleteAsync(API + "/4");
+            resposta = await _client.DeleteAsync(API + "/" + _tecnologia.Id);
             //Assert
             Assert.Equal(HttpStatusCode.OK, resposta.StatusCode);
 
-            resposta = await _client.GetAsync(API + "/4");
+            resposta = await _client.GetAsync(API + "/" + _tecnologia.Id);
             // Assert
             Assert.Equal(HttpStatusCode.NotFound, resposta.StatusCode);
         }
 
-        private IList<Tecnologia> ListaTecnologias(int quantidadeTecnologiasConhecidas)
-        {
-            var lista = new List<Tecnologia>(){
-                CriarTecnologia(1 ,"C#"),
-                CriarTecnologia(1 ,"Java"),
-                CriarTecnologia(1, "Ruby"),
-                CriarTecnologia(1 ,"PHP"),
-                CriarTecnologia(1 ,"ANGULAR"),
-                CriarTecnologia(1 ,"Angular 2"),
-                CriarTecnologia(1 ,"Javascript"),
-                CriarTecnologia(1 ,"Knockout"),
-                CriarTecnologia(1 ,"Visual basic"),
-                CriarTecnologia(1 ,"Git"),
-                CriarTecnologia(1 ,"Git"),
-                CriarTecnologia(1 ,"Asp Net core"),
-                CriarTecnologia(1 ,"SQL"),
-                CriarTecnologia(1 ,"node"),
-                CriarTecnologia(1 ,"python")
-            };
-            var listaAleatoria = NumerosAleatorios(quantidadeTecnologiasConhecidas);
-            var listaSelecionados = lista.Where(t => listaAleatoria.Contains(t.Id)).ToList();
-            return listaSelecionados;
-        }
+       
 
-        public Tecnologia CriarTecnologia(Nullable<int> id = null, string nome = "C#")
+        public Tecnologia CriarTecnologia( string nome = "C#")
         {
-            if (id.HasValue)
-                return new Tecnologia() { Id = id.Value, Nome = nome };
 
             return new Tecnologia() { Nome = nome };
         }
 
-        private IList<int> NumerosAleatorios(int quantidadeTecnologiasConhecidas)
-        {
-            List<int> lista = new List<int>();
-            for (int i = 0; i <= quantidadeTecnologiasConhecidas; i++)
-            {
-                var numero = new Random().Next(1, 15);
-                while (lista.Contains(numero))
-                {
-                    numero = new Random().Next(1, 15);
-                }
-
-                lista.Add(numero);
-            }
-            return lista;
-        }
+    
 
     }
 }

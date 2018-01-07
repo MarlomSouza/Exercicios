@@ -11,8 +11,8 @@ using System;
 namespace RH.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20180107031246_candidatoProcesso")]
-    partial class candidatoProcesso
+    [Migration("20180107112216_iniciandoBanco")]
+    partial class iniciandoBanco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

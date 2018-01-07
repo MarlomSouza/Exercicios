@@ -20,7 +20,7 @@ namespace ExercicioTest
 
         public CandidatoTest()
         {
-            Mock a = new Mock<>()
+
             _server = new TestServer(new WebHostBuilder()
             .UseStartup<Startup>());
             _client = _server.CreateClient();
@@ -30,13 +30,16 @@ namespace ExercicioTest
         public async void Obter_candidato_por_id()
         {
             // Act
-            var candidato = CriarCandidato(id: 2);
+            var candidato = CriarCandidato();
             var candidatoJson = JsonConvert.SerializeObject(candidato);
             var content = new StringContent(candidatoJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
 
-            resposta = await _client.GetAsync(API + "/2");
             var responseString = await resposta.Content.ReadAsStringAsync();
+            candidato = JsonConvert.DeserializeObject<Candidato>(responseString);
+
+            resposta = await _client.GetAsync(API + "/" + candidato.Id);
+            responseString = await resposta.Content.ReadAsStringAsync();
             var _candidato = JsonConvert.DeserializeObject<Candidato>(responseString);
 
             // Assert
@@ -75,7 +78,7 @@ namespace ExercicioTest
         public async void Alterar_candidato()
         {
             //Salvar candidato
-            Candidato candidato = CriarCandidato(id: 3);
+            Candidato candidato = CriarCandidato();
             var candidatoJson = JsonConvert.SerializeObject(candidato);
             HttpContent content = new StringContent(candidatoJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
@@ -86,16 +89,17 @@ namespace ExercicioTest
             Assert.Equal(candidato.Nome, _candidato.Nome);
 
             //Altera candidato
-            candidato = CriarCandidato(id: 3, nome: "Marlom");
+            candidato = CriarCandidato(nome: "Marlom");
+            candidato.Id = _candidato.Id;
             candidatoJson = JsonConvert.SerializeObject(candidato);
             content = new StringContent(candidatoJson, Encoding.UTF8, mediaType);
-            resposta = await _client.PutAsync(API + "/3", content);
+            resposta = await _client.PutAsync(API + "/" + _candidato.Id, content);
 
             //Assert
             Assert.Equal(HttpStatusCode.NoContent, resposta.StatusCode);
 
             //Obter candidato
-            resposta = await _client.GetAsync(API + "/3");
+            resposta = await _client.GetAsync(API + "/" + candidato.Id);
             responseString = await resposta.Content.ReadAsStringAsync();
             _candidato = JsonConvert.DeserializeObject<Candidato>(responseString);
 
@@ -107,7 +111,7 @@ namespace ExercicioTest
         public async void Deletar_Candidato()
         {
             //Salvar candidato
-            Candidato candidato = CriarCandidato(id: 4);
+            Candidato candidato = CriarCandidato();
             var candidatoJson = JsonConvert.SerializeObject(candidato);
             HttpContent content = new StringContent(candidatoJson, Encoding.UTF8, mediaType);
             var resposta = await _client.PostAsync(API, content);
@@ -117,11 +121,11 @@ namespace ExercicioTest
             //Assert
             Assert.Equal(candidato.Nome, _candidato.Nome);
 
-            resposta = await _client.DeleteAsync(API + "/4");
+            resposta = await _client.DeleteAsync(API + "/" + _candidato.Id);
             //Assert
             Assert.Equal(HttpStatusCode.OK, resposta.StatusCode);
 
-            resposta = await _client.GetAsync(API + "/4");
+            resposta = await _client.GetAsync(API + "/" + _candidato.Id);
             // Assert
             Assert.Equal(HttpStatusCode.NotFound, resposta.StatusCode);
 
@@ -129,9 +133,6 @@ namespace ExercicioTest
 
         private Candidato CriarCandidato(Nullable<int> id = null, string nome = "Pedro")
         {
-            if (id.HasValue)
-                return new Candidato() { Id = id.Value, Nome = nome };
-
             return new Candidato() { Nome = nome };
 
         }

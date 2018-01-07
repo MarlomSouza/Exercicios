@@ -32,6 +32,7 @@ namespace RH
             services.AddTransient<ICandidatoRepository, CandidatoRepository>();
             services.AddTransient<ITecnologiaRepository, TecnologiaRepository>();
             services.AddTransient<IProcessoRepository, ProcessoRepository>();
+            services.AddTransient<ITriagemRepository, TriagemRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

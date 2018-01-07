@@ -1,3 +1,39 @@
-<p>
-  lista-triagem works!
-</p>
+<div class="row">
+    <h2>Listagem de Processos</h2>
+    <hr>
+</div>
+
+<div class="col-sm-12 ">
+    <a class="btn btn-success pull-right" [routerLink]="['/cadastra-triagem']" role="button"> <span class='glyphicon glyphicon-plus'></span> Cadastrar Processo
+    </a>
+</div>
+
+<div class="row">
+    <table class="table">
+        <thead class="thead-inverse">
+            <tr>
+                <th>#</th>
+                <th>Candidato</th>
+                <th>Pontos</th>
+                <td>Opções</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let processo of processos; let indice = index">
+            <tr>
+                <th scope="row">{{processo.id}}</th>
+                <td>{{processo.nome}}</td>
+                <td>{{processo.candidatos.length}}</td>
+                <td>{{processo.tecnologias.length}}</td>
+                <td>
+                    <a class="btn btn-primary" [routerLink]="['/cadastra-processo', processo.id]" role="button">
+                        <span class='glyphicon glyphicon-pencil'></span>
+                    </a>
+
+                    <a class="btn btn-danger" (click)="excluir(processo.id, indice)" role="button">
+                        <span class='glyphicon glyphicon-trash'></span>
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
