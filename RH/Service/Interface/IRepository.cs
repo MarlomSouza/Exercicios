@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace RH.Service.Interface
 {
-    public interface IRepository <T>
+    public interface IRepository <T> where T: class
     {
         Task Delete(T entity);
         Task<T> GetById(int id);

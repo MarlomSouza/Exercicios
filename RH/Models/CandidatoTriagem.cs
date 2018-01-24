@@ -5,12 +5,12 @@ using System.Threading.Tasks;
 
 namespace RH.Models
 {
-    public class CandidatoProcesso
+    public class CandidatoTriagem
     {
         public int CandidatoId { get; set; }
-        public int ProcessoId { get; set; }
+        public int TriagemId { get; set; }
         public Candidato Candidato { get; set; }
-        public Processo Processo { get; set; }
+        public Triagem Triagem { get; set; }
 
 
     }

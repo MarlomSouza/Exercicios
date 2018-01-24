@@ -10,6 +10,7 @@ namespace RH.Models
         public DbSet<Candidato> Candidatos { get; set; }
         public DbSet<Tecnologia> Tecnologias { get; set; }
         public DbSet<Processo> Processos { get; set; }
+        public DbSet<Triagem> Triagens { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -19,10 +20,9 @@ namespace RH.Models
             modelBuilder.Entity<CandidatoTecnologia>()
              .HasKey(ct => new { ct.CandidatoId, ct.TecnologiaId });
 
-            modelBuilder.Entity<CandidatoProcesso>()
-         .HasKey(cp => new { cp.CandidatoId, cp.ProcessoId });
+            modelBuilder.Entity<CandidatoTriagem>()
+            .HasKey(cp => new { cp.CandidatoId, cp.TriagemId });
         }
-
 
     }
 }

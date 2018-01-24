@@ -11,8 +11,8 @@ using System;
 namespace RH.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20180107112216_iniciandoBanco")]
-    partial class iniciandoBanco
+    [Migration("20180117002549_Criacao_banco")]
+    partial class Criacao_banco
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,19 +33,6 @@ namespace RH.Migrations
                     b.ToTable("Candidatos");
                 });
 
-            modelBuilder.Entity("RH.Models.CandidatoProcesso", b =>
-                {
-                    b.Property<int>("CandidatoId");
-
-                    b.Property<int>("ProcessoId");
-
-                    b.HasKey("CandidatoId", "ProcessoId");
-
-                    b.HasIndex("ProcessoId");
-
-                    b.ToTable("CandidatoProcesso");
-                });
-
             modelBuilder.Entity("RH.Models.CandidatoTecnologia", b =>
                 {
                     b.Property<int>("CandidatoId");
@@ -57,6 +44,19 @@ namespace RH.Migrations
                     b.HasIndex("TecnologiaId");
 
                     b.ToTable("CandidatoTecnologia");
+                });
+
+            modelBuilder.Entity("RH.Models.CandidatoTriagem", b =>
+                {
+                    b.Property<int>("CandidatoId");
+
+                    b.Property<int>("TriagemId");
+
+                    b.HasKey("CandidatoId", "TriagemId");
+
+                    b.HasIndex("TriagemId");
+
+                    b.ToTable("CandidatoTriagem");
                 });
 
             modelBuilder.Entity("RH.Models.Processo", b =>
@@ -98,17 +98,19 @@ namespace RH.Migrations
                     b.ToTable("Tecnologias");
                 });
 
-            modelBuilder.Entity("RH.Models.CandidatoProcesso", b =>
+            modelBuilder.Entity("RH.Models.Triagem", b =>
                 {
-                    b.HasOne("RH.Models.Candidato", "Candidato")
-                        .WithMany("ProcessosSeletivos")
-                        .HasForeignKey("CandidatoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
 
-                    b.HasOne("RH.Models.Processo", "Processo")
-                        .WithMany("Candidatos")
-                        .HasForeignKey("ProcessoId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                    b.Property<int>("ProcessoId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProcessoId")
+                        .IsUnique();
+
+                    b.ToTable("Triagens");
                 });
 
             modelBuilder.Entity("RH.Models.CandidatoTecnologia", b =>
@@ -124,6 +126,19 @@ namespace RH.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
+            modelBuilder.Entity("RH.Models.CandidatoTriagem", b =>
+                {
+                    b.HasOne("RH.Models.Candidato", "Candidato")
+                        .WithMany("Triagens")
+                        .HasForeignKey("CandidatoId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("RH.Models.Triagem", "Triagem")
+                        .WithMany("Candidatos")
+                        .HasForeignKey("TriagemId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
             modelBuilder.Entity("RH.Models.ProcessoTecnologia", b =>
                 {
                     b.HasOne("RH.Models.Processo", "Processo")
@@ -134,6 +149,14 @@ namespace RH.Migrations
                     b.HasOne("RH.Models.Tecnologia", "Tecnologia")
                         .WithMany("Processos")
                         .HasForeignKey("TecnologiaId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("RH.Models.Triagem", b =>
+                {
+                    b.HasOne("RH.Models.Processo", "Processo")
+                        .WithOne("Triagem")
+                        .HasForeignKey("RH.Models.Triagem", "ProcessoId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618

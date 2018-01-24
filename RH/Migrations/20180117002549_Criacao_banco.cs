@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace RH.Migrations
 {
-    public partial class iniciandoBanco : Migration
+    public partial class Criacao_banco : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -49,23 +49,18 @@ namespace RH.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "CandidatoProcesso",
+                name: "Triagens",
                 columns: table => new
                 {
-                    CandidatoId = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     ProcessoId = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_CandidatoProcesso", x => new { x.CandidatoId, x.ProcessoId });
+                    table.PrimaryKey("PK_Triagens", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_CandidatoProcesso_Candidatos_CandidatoId",
-                        column: x => x.CandidatoId,
-                        principalTable: "Candidatos",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_CandidatoProcesso_Processos_ProcessoId",
+                        name: "FK_Triagens_Processos_ProcessoId",
                         column: x => x.ProcessoId,
                         principalTable: "Processos",
                         principalColumn: "Id",
@@ -121,10 +116,29 @@ namespace RH.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
-            migrationBuilder.CreateIndex(
-                name: "IX_CandidatoProcesso_ProcessoId",
-                table: "CandidatoProcesso",
-                column: "ProcessoId");
+            migrationBuilder.CreateTable(
+                name: "CandidatoTriagem",
+                columns: table => new
+                {
+                    CandidatoId = table.Column<int>(nullable: false),
+                    TriagemId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CandidatoTriagem", x => new { x.CandidatoId, x.TriagemId });
+                    table.ForeignKey(
+                        name: "FK_CandidatoTriagem_Candidatos_CandidatoId",
+                        column: x => x.CandidatoId,
+                        principalTable: "Candidatos",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_CandidatoTriagem_Triagens_TriagemId",
+                        column: x => x.TriagemId,
+                        principalTable: "Triagens",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateIndex(
                 name: "IX_CandidatoTecnologia_TecnologiaId",
@@ -132,18 +146,29 @@ namespace RH.Migrations
                 column: "TecnologiaId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_CandidatoTriagem_TriagemId",
+                table: "CandidatoTriagem",
+                column: "TriagemId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ProcessoTecnologia_TecnologiaId",
                 table: "ProcessoTecnologia",
                 column: "TecnologiaId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Triagens_ProcessoId",
+                table: "Triagens",
+                column: "ProcessoId",
+                unique: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "CandidatoProcesso");
+                name: "CandidatoTecnologia");
 
             migrationBuilder.DropTable(
-                name: "CandidatoTecnologia");
+                name: "CandidatoTriagem");
 
             migrationBuilder.DropTable(
                 name: "ProcessoTecnologia");
@@ -152,10 +177,13 @@ namespace RH.Migrations
                 name: "Candidatos");
 
             migrationBuilder.DropTable(
-                name: "Processos");
+                name: "Triagens");
 
             migrationBuilder.DropTable(
                 name: "Tecnologias");
+
+            migrationBuilder.DropTable(
+                name: "Processos");
         }
     }
 }
