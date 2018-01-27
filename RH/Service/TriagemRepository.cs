@@ -1,10 +1,10 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
+﻿using Microsoft.EntityFrameworkCore;
 using RH.Models;
 using RH.Service.Interface;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RH.Service
 {
@@ -42,6 +42,18 @@ namespace RH.Service
         {
             _dbContext.Triagens.Update(entity);
             return _dbContext.SaveChangesAsync();
-        }   
+        }
+
+        public Task Update(Triagem triagem, int candidatoId)
+        {
+            var candidato = triagem.Candidatos.FirstOrDefault(d => d.CandidatoId.Equals(candidatoId));
+
+            if (candidato == null)
+                throw new Exception("Candidato não encontrado");
+
+            triagem.Candidatos.Remove(candidato);
+            _dbContext.Triagens.Update(triagem);
+            return _dbContext.SaveChangesAsync();
+        }
     }
 }

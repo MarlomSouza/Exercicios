@@ -15,7 +15,7 @@ namespace Initializer.Data
 
         private static void InitializeTecnologias(Context context)
         {
-            if (context.Tecnologias.Count() == 0)
+            if (context.Tecnologias.Count() > 0)
                 return;
 
             var tecnologias = new Tecnologia[]{

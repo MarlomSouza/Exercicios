@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using RH.Models;
 
 namespace RH.Service.Interface
 {

@@ -24,8 +24,7 @@ namespace RH
                 }
                 catch (Exception ex)
                 {
-
-                    throw;
+                    throw ex;
                 }
             }
 

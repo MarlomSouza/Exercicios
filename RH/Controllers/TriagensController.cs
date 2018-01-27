@@ -11,7 +11,7 @@ namespace RH.Controllers
     [Route("api/[Controller]")]
     public class TriagensController : Controller
     {
-        private readonly IRepository<Triagem> service;
+        private readonly ITriagemRepository service;
 
         public TriagensController(ITriagemRepository context)
         {
@@ -21,14 +21,14 @@ namespace RH.Controllers
 
 
 
-        // GET: api/Triagems
+        // GET: api/Triagens
         [HttpGet]
         public IEnumerable<Triagem> GetTriagens()
         {
             return service.List();
         }
 
-        // GET: api/Triagems/5
+        // GET: api/Triagens/5
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTriagem([FromRoute] int id)
         {
@@ -50,7 +50,7 @@ namespace RH.Controllers
             }
         }
 
-        // PUT: api/Triagems/5
+        // PUT: api/Triagens/5
         [HttpPut("{id}")]
         public async Task<IActionResult> PutTriagem([FromRoute] int id, [FromBody] Triagem triagem)
         {
@@ -64,7 +64,7 @@ namespace RH.Controllers
             {
                 await service.Update(triagem);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return StatusCode(500);
             }
@@ -72,7 +72,30 @@ namespace RH.Controllers
             return NoContent();
         }
 
-        // POST: api/Triagems
+        [HttpPut("{id:int}/candidato/{candidatoId:int}", Name = "UpdateCandidatoTriagem")]
+        public async Task<IActionResult> UpdateCandidatoTriagem([FromRoute] int id, [FromRoute] int candidatoId)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+
+            Triagem triagem = await service.GetById(id);
+
+            if (triagem == null)
+                return NotFound();
+
+            try
+            {
+                await service.Update(triagem, candidatoId);
+            }
+            catch (Exception e)
+            {
+                return StatusCode(500, e);
+            }
+
+            return NoContent();
+        }
+
+        // POST: api/Triagens
         [HttpPost]
         public async Task<IActionResult> PostTriagem([FromBody] Triagem triagem)
         {
@@ -84,7 +107,7 @@ namespace RH.Controllers
             return CreatedAtAction("GetTriagem", new { id = triagem.Id }, triagem);
         }
 
-        // DELETE: api/Triagems/5
+        // DELETE: api/Triagens/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteTriagem([FromRoute] int id)
         {
@@ -103,25 +126,5 @@ namespace RH.Controllers
 
             return Ok(triagem);
         }
-
-        [HttpDelete("candidatos/{candidatoId}", Name = "DeleteCandidato")]
-        public async Task<IActionResult> DeleteCandidato([FromRoute] int id, [FromRoute] int candidatoId)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            Triagem triagem = await service.GetById(id);
-            if (triagem == null)
-            {
-                return NotFound();
-            }
-
-            await service.Delete(triagem);
-
-            return Ok(triagem);
-        }
-
     }
 }
