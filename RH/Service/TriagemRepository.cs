@@ -48,9 +48,6 @@ namespace RH.Service
         {
             var candidato = triagem.Candidatos.FirstOrDefault(d => d.CandidatoId.Equals(candidatoId));
 
-            if (candidato == null)
-                throw new Exception("Candidato não encontrado");
-
             triagem.Candidatos.Remove(candidato);
             _dbContext.Triagens.Update(triagem);
             return _dbContext.SaveChangesAsync();

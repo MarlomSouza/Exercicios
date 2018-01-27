@@ -3,6 +3,7 @@ using RH.Models;
 using RH.Service.Interface;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace RH.Controllers
@@ -73,14 +74,17 @@ namespace RH.Controllers
         }
 
         [HttpPut("{id:int}/candidato/{candidatoId:int}", Name = "UpdateCandidatoTriagem")]
-        public async Task<IActionResult> UpdateCandidatoTriagem([FromRoute] int id, [FromRoute] int candidatoId)
+        public async Task<IActionResult> UpdateCandidatoTriagem([FromRoute] int id, [FromRoute] int candidatoId, [FromBody] CandidatoTriagem candidatoTriagem)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
+            if (candidatoId != candidatoTriagem.CandidatoId || id != candidatoTriagem.TriagemId)
+                return BadRequest();
+
             Triagem triagem = await service.GetById(id);
 
-            if (triagem == null)
+            if (triagem == null || triagem.Candidatos.Any(c => c.CandidatoId.Equals(candidatoId) == false))
                 return NotFound();
 
             try
