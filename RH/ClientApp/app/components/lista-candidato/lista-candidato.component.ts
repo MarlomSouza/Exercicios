@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { CandidatoService, Candidato } from '../../service/candidato.service';
+import { CandidatoService } from '../../service/candidato.service';
+import { Candidato } from '../../models/Candidato';
 
 @Component({
   selector: 'app-lista-candidato',
@@ -8,9 +9,9 @@ import { CandidatoService, Candidato } from '../../service/candidato.service';
 export class ListaCandidatoComponent implements OnInit {
 
   private _service: CandidatoService;
-  candidatos : Candidato[] = []
+  candidatos: Candidato[] = []
 
-  constructor(service: CandidatoService) { 
+  constructor(service: CandidatoService) {
     this._service = service;
   }
 
@@ -18,15 +19,15 @@ export class ListaCandidatoComponent implements OnInit {
     this.listarCandidatos();
   }
 
-  private listarCandidatos(){
+  private listarCandidatos() {
     this._service.listarCandidatos()
-    .subscribe(candidatos => this.candidatos = candidatos);
+      .subscribe(candidatos => this.candidatos = candidatos);
   }
 
-  excluir(id: number, index: number){
+  excluir(id: number, index: number) {
     this._service.excluirUsuario(id).subscribe(() => {
 
-      this.candidatos.splice(index , 1);
+      this.candidatos.splice(index, 1);
 
       console.log("Candidato excluido com sucesso!");
 

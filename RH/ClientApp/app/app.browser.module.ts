@@ -8,10 +8,11 @@ import { FormsModule } from '@angular/forms';
 import 'rxjs/add/operator/map';
 import { ProcessoService } from './service/processo.service';
 import { TecnologiaService } from './service/tecnologia.service';
+import { TriagemService } from './service/triagem.service';
 
 
 @NgModule({
-    bootstrap: [ AppComponent ],
+    bootstrap: [AppComponent],
     imports: [
         BrowserModule,
         AppModuleShared,
@@ -19,7 +20,7 @@ import { TecnologiaService } from './service/tecnologia.service';
         FormsModule,
     ],
     providers: [
-        CandidatoService, ProcessoService, TecnologiaService, { provide: 'BASE_URL', useFactory: getBaseUrl }
+        CandidatoService, ProcessoService, TecnologiaService, TriagemService, { provide: 'BASE_URL', useFactory: getBaseUrl }
     ]
 })
 export class AppModule {

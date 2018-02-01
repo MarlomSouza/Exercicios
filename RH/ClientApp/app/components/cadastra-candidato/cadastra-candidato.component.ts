@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
-import { TecnologiaService, Tecnologia } from '../../service/tecnologia.service';
-import { CandidatoService, Candidato, CandidatoTecnologia } from '../../service/candidato.service';
+import { TecnologiaService } from '../../service/tecnologia.service';
+
+import { CandidatoService, } from '../../service/candidato.service';
+import { Candidato } from '../../models/Candidato';
+import { Tecnologia } from '../../models/Tecnologia';
+import { CandidatoTecnologia } from '../../models/CandidatoTecnologia';
+
 
 @Component({
   selector: 'app-cadastra-candidato',
@@ -15,42 +20,41 @@ export class CadastraCandidatoComponent implements OnInit {
   private _service: CandidatoService;
   private _tecnologiaService: TecnologiaService;
   private _router: Router;
-  tecnologias : Tecnologia[] = [];
-  tecnologiasSelecionadas: any[]=[1];
+  tecnologias: Tecnologia[] = [];
+  tecnologiasSelecionadas: any[] = [1];
 
-  constructor(service: CandidatoService, tecnologiaService: TecnologiaService ,route: ActivatedRoute, router: Router ) { 
+  constructor(service: CandidatoService, tecnologiaService: TecnologiaService, route: ActivatedRoute, router: Router) {
     this._service = service;
     this._tecnologiaService = tecnologiaService
     this._route = route;
     this._router = router;
     this.listarTecnologias();
-    this._route.params.subscribe(params =>
-      {
-        let id :number = params['id'];
-        
-        if(id){
-          this.candidato.id = id;
-          this.buscarPorId(id);
-        }
-      });
+    this._route.params.subscribe(params => {
+      let id: number = params['id'];
+
+      if (id) {
+        this.candidato.id = id;
+        this.buscarPorId(id);
+      }
+    });
   }
 
   ngOnInit() {
-  
+
   }
 
-  salvar(){
-  console.log(this.candidato);
-  this.selecionarLinguagensConhecidas();
+  salvar() {
+    console.log(this.candidato);
+    this.selecionarLinguagensConhecidas();
     this._service.salvarCandidato(this.candidato)
-    .subscribe(() => {
-      console.log("Candidato salva com sucesso!"); 
-      this._router.navigate(['/lista-candidato'])
-    }, erro => console.log("ERROR ==>", erro));
+      .subscribe(() => {
+        console.log("Candidato salva com sucesso!");
+        this._router.navigate(['/lista-candidato'])
+      }, erro => console.log("ERROR ==>", erro));
   }
 
-  private selecionarLinguagensConhecidas(){
-    this.tecnologiasSelecionadas.forEach((tecnologiaId) =>{
+  private selecionarLinguagensConhecidas() {
+    this.tecnologiasSelecionadas.forEach((tecnologiaId) => {
       let candidatoTecnologia = new CandidatoTecnologia();
       candidatoTecnologia.candidatoId = this.candidato.id;
       candidatoTecnologia.tecnologiaId = tecnologiaId
@@ -70,7 +74,7 @@ export class CadastraCandidatoComponent implements OnInit {
    */
   public listarTecnologias() {
     this._tecnologiaService.listarTecnologias()
-    .subscribe(tecnologias => this.tecnologias = tecnologias);
+      .subscribe(tecnologias => this.tecnologias = tecnologias);
   }
 
 }

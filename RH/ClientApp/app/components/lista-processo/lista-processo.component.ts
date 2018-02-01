@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ProcessoService, Processo } from '../../service/processo.service';
+import { ProcessoService } from '../../service/processo.service';
+import { Processo } from '../../models/Processo';
 
 @Component({
   selector: 'app-lista-processo',
@@ -8,29 +9,27 @@ import { ProcessoService, Processo } from '../../service/processo.service';
 })
 export class ListaProcessoComponent implements OnInit {
 
-  
   private service: ProcessoService;
   mensagem: string;
-  processos : Processo[] = []
+  processos: Processo[] = []
 
   constructor(service: ProcessoService) {
     this.service = service;
-   
-   }
+  }
 
   ngOnInit() {
     this.listarProcessos();
   }
 
-  private listarProcessos(){
+  private listarProcessos() {
     this.service.listarProcessos()
-    .subscribe(processos => this.processos = processos);
+      .subscribe(processos => this.processos = processos);
   }
 
-  excluir(id: number, index: number){
+  excluir(id: number, index: number) {
     this.service.excluirProcesso(id).subscribe(() => {
 
-      this.processos.splice(index , 1);
+      this.processos.splice(index, 1);
 
       console.log("Processo excluido com sucesso!");
 
