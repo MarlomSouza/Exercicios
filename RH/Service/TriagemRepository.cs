@@ -24,7 +24,7 @@ namespace RH.Service
 
         public Task<Triagem> GetById(int id)
         {
-            return _dbContext.Triagens.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processo).FirstAsync(c => c.Id.Equals(id));
+            return _dbContext.Triagens.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processo).ThenInclude(p => p.Tecnologias).FirstAsync(c => c.Id.Equals(id));
         }
 
         public Task Insert(Triagem entity)
@@ -35,7 +35,7 @@ namespace RH.Service
 
         public IEnumerable<Triagem> List()
         {
-            return _dbContext.Triagens.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processo).AsEnumerable();
+            return _dbContext.Triagens.Include(t => t.Candidatos).ThenInclude(c => c.Candidato).Include(t => t.Processo).ThenInclude(p => p.Tecnologias).AsEnumerable();
         }
 
         public Task Update(Triagem entity)

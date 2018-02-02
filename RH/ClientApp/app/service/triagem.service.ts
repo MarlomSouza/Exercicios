@@ -16,13 +16,10 @@ export class TriagemService {
     this.baseUrl = baseUrl;
   }
 
-  listarTriagens() {
-
-
-  }
-  listarTecnologias(): Observable<Triagem[]> {
+  listarTriagens()   {
     return this.http.get(this.baseUrl + this.api)
       .map(res => res.json());
-  };
+  }
+
 
 }

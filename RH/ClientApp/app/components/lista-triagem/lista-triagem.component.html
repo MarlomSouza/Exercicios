@@ -1,5 +1,5 @@
 <div class="row">
-    <h2>Listagem de Processos</h2>
+    <h2>Listagem de Triagem</h2>
     <hr>
 </div>
 
@@ -13,23 +13,24 @@
         <thead class="thead-inverse">
             <tr>
                 <th>#</th>
-                <th>Candidato</th>
+                <th>Processo</th>
+                <th>Candidatos</th>
                 <th>Pontos</th>
                 <td>Opções</td>
             </tr>
         </thead>
-        <tbody *ngFor="let processo of processos; let indice = index">
+        <tbody *ngFor="let triagem of triagens; let indice = index">
             <tr>
-                <th scope="row">{{processo.id}}</th>
-                <td>{{processo.nome}}</td>
-                <td>{{processo.candidatos.length}}</td>
-                <td>{{processo.tecnologias.length}}</td>
+                <th scope="row">{{triagem.id}}</th>
+                <td>{{triagem.processo.nome}}</td>
+                <td>{{triagem.candidatos.length}}</td>
+                <td>{{triagem.processo.tecnologias.length}}</td>
                 <td>
-                    <a class="btn btn-primary" [routerLink]="['/cadastra-processo', processo.id]" role="button">
+                    <a class="btn btn-primary" [routerLink]="['/cadastra-triagem', triagem.id]" role="button">
                         <span class='glyphicon glyphicon-pencil'></span>
                     </a>
 
-                    <a class="btn btn-danger" (click)="excluir(processo.id, indice)" role="button">
+                    <a class="btn btn-danger" (click)="excluir(triagem.id, indice)" role="button">
                         <span class='glyphicon glyphicon-trash'></span>
                     </a>
                 </td>
